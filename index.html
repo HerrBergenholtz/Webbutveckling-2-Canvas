@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="style.css">
+        <script src="script.js"></script>
+        <title>Canvas</title>
+    </head>
+    <body>
+        <main>
+            <canvas width="600px" height="300px"></canvas>
+            <script>
+            	let cx = document.querySelector("canvas").getContext("2d");
+
+                function circle(x, y, r, color, style) {
+                    cx.beginPath();
+                    cx.arc(x, y, r, 0, Math.PI * 2);
+
+                    cx.strokeStyle = color;
+                    cx.fillStyle = color;
+                    
+                    if(style === "stroke") {
+                        cx.stroke();
+                    }
+                    else if (style === "fill") {
+                        cx.fill();
+                    }
+                }
+
+                function rect(x, y, w, h, color) {
+                    cx.beginPath();
+                    cx.fillStyle = color;
+                    cx.fillRect(x, y, w, h);
+                }
+
+                function branch(length, angle, scale) {
+		            cx.fillRect(0, 0, 3, length);
+
+	            	if (length < 8) return;
+
+	            	cx.save();
+	            	cx.translate(0, length);
+	            	cx.rotate(-angle);
+	            	branch(length * scale, angle, scale);
+	            	cx.rotate(2 * angle);
+	            	branch(length * scale, angle, scale);
+	            	cx.restore();
+		        }
+
+                //Grund
+                rect(0, 0, 600, 200, "lightblue");
+                rect(0, 200, 600, 100, "green");
+
+                //Moln 1
+                circle(100, 50, 25, "white", "fill");
+                circle(120, 50, 30, "white", "fill");
+                circle(155, 50, 30, "white", "fill");
+                circle(190, 50, 30, "white", "fill");
+                circle(210, 50, 25, "white", "fill");
+
+                //Moln 2
+                circle(400, 70, 30, "white", "fill");
+                circle(430, 70, 40, "white", "fill");
+                circle(470, 80, 40, "white", "fill");
+                circle(500, 80, 30, "white", "fill");
+
+                //Träd
+                //Stamm
+                rect(415, 130, 30, 120, "#7a3f22");
+
+                //Löv
+                for (let i = 0; i < 50; i++) {
+                    circle(Math.floor(Math.random() * (460 - 390 + 1) + 390), Math.floor(Math.random() * (135 - 70 + 1) + 70), 25, "green", "fill");
+                }
+
+                //Frukt
+                circle(445, 135, 6, "red", "fill");
+                circle(430, 100, 7, "red", "fill");
+                circle(405, 90, 6, "red", "fill");
+                circle(390, 120, 7, "red", "fill");
+                circle(450, 75, 6, "red", "fill");
+                circle(455, 105, 5, "red", "fill");
+                //Hus
+                //Tak
+                cx.lineWidth = 10;
+                cx.strokeStyle = "white";
+                cx.strokeRect(130, 150, 180, 95);
+
+
+                cx.beginPath();
+                cx.moveTo(130, 150);
+                cx.lineTo(220, 60);
+                cx.lineTo(310, 150);
+                cx.strokeStyle = "black";
+                cx.lineWidth = 14;
+                cx.stroke();
+                cx.strokeStyle = "white";
+                cx.lineWidth = 6;
+                cx.stroke();
+                cx.fillStyle = "brown"
+                cx.fill();
+                
+                rect(130, 150, 180, 100, "brown");
+                //Fönster
+                rect(160, 160, 30, 30, "lightblue");
+                rect(250, 160, 30, 30, "lightblue");
+                
+                cx.lineWidth = 2;
+                cx.strokeStyle = "black";
+                cx.beginPath();
+                cx.moveTo(160, 175);
+                cx.lineTo(190, 175);
+                cx.stroke();
+
+                cx.beginPath();
+                cx.moveTo(175, 160);
+                cx.lineTo(175, 190);
+                cx.stroke();
+
+                cx.beginPath();
+                cx.moveTo(250, 175);
+                cx.lineTo(280, 175);
+                cx.stroke();
+                
+                cx.beginPath();
+                cx.moveTo(265, 160);
+                cx.lineTo(265, 190);
+                cx.stroke();
+
+                //Dörr
+                for (let i = 205; i < 235; i += 2) {
+                    rect(i, 200, 5, 50, "#825139");
+                    rect(i += 2, 200, 5, 50, "#7a3f22");
+                }
+
+                //Handtag
+                circle(210, 225, 3, "black", "fill");
+                cx.beginPath();
+                cx.moveTo(210, 225);
+                cx.lineTo(216, 225);
+                cx.lineWidth = 3;
+                cx.strokeStyle = "black";
+                cx.stroke();
+
+                //Gångjärn
+                rect(238, 208, 2, 3, "yellow");
+                rect(238, 214, 2, 3, "yellow");
+                rect(240, 208, 2, 9, "yellow");
+
+                rect(238, 234, 2, 3, "yellow");
+                rect(238, 240, 2, 3, "yellow");
+                rect(240, 234, 2, 9, "yellow");
+
+                //Skylt
+                
+            </script>
+        </main>
+    </body>
+</html>
