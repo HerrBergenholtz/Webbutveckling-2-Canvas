@@ -35,20 +35,6 @@
                     cx.fillRect(x, y, w, h);
                 }
 
-                function branch(length, angle, scale) {
-		            cx.fillRect(0, 0, 3, length);
-
-	            	if (length < 8) return;
-
-	            	cx.save();
-	            	cx.translate(0, length);
-	            	cx.rotate(-angle);
-	            	branch(length * scale, angle, scale);
-	            	cx.rotate(2 * angle);
-	            	branch(length * scale, angle, scale);
-	            	cx.restore();
-		        }
-
                 //Grund
                 rect(0, 0, 600, 200, "lightblue");
                 rect(0, 200, 600, 100, "green");
@@ -71,7 +57,7 @@
                 rect(415, 130, 30, 120, "#7a3f22");
 
                 //Löv
-                for (let i = 0; i < 50; i++) {
+                for (let i = 0; i < 80; i++) {
                     circle(Math.floor(Math.random() * (460 - 390 + 1) + 390), Math.floor(Math.random() * (135 - 70 + 1) + 70), 25, "green", "fill");
                 }
 
@@ -79,9 +65,10 @@
                 circle(445, 135, 6, "red", "fill");
                 circle(430, 100, 7, "red", "fill");
                 circle(405, 90, 6, "red", "fill");
-                circle(390, 120, 7, "red", "fill");
+                circle(400, 120, 7, "red", "fill");
                 circle(450, 75, 6, "red", "fill");
                 circle(455, 105, 5, "red", "fill");
+                
                 //Hus
                 //Tak
                 cx.lineWidth = 10;
@@ -103,6 +90,7 @@
                 cx.fill();
                 
                 rect(130, 150, 180, 100, "brown");
+                
                 //Fönster
                 rect(160, 160, 30, 30, "lightblue");
                 rect(250, 160, 30, 30, "lightblue");
